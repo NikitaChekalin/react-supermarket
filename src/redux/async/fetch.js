@@ -1,18 +1,6 @@
-const FETCH_PRODUCTS = 'FETCH_PRODUCTS'
-
-const initialState = {
-  items: [],
-  cartItems: [],
-  isLoaded: false,
+import axios from 'axios'
+import { fetchProductsActionCreator } from '../reducers/productReducer'
+export const fetchProducts = () => async (dispatch) => {
+  const res = await axios.get('https://61003fa2bca46600171cf7ea.mockapi.io/products')
+  dispatch(fetchProductsActionCreator(res.data))
 }
-
-export const fetchReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case FETCH_PRODUCTS:
-      return { ...state, items: action.payload, isLoaded: true }
-    default:
-      return state
-  }
-}
-
-export const fetchProductsActionCreator = (payload) => ({ type: FETCH_PRODUCTS, payload })
