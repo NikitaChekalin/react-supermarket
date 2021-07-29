@@ -1,18 +1,14 @@
 body {
   margin: 0;
+  font: italic 16px/2 'Trebuchet MS', Verdana, sans-serif;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(rgba(255, 255, 255, 0) 0.9em, rgba(0, 0, 0, 0.15) 1em) 0 0,
-    linear-gradient(90deg, rgba(255, 255, 255, 0) 0.9em, rgba(0, 0, 0, 0.15) 1em) 0 0;
-  background-size: 1em 1em;
-  background-color: rgba(255, 255, 240, 0.808);
-  font: italic 16px/2 'Trebuchet MS', Verdana, sans-serif;
-
-  p {
-    margin: 2.55em 3em 1em;
-  }
+  background-position: center;
+  background-image: url(https://i.pinimg.com/originals/d3/6d/46/d36d462db827833805497d9ea78a1343.jpg);
+  background-size: cover;
+  background-repeat: repeat;
 }
 .wrapper {
   background-color: #eff6fc;

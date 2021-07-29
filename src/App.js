@@ -1,25 +1,31 @@
-import Header from './Components/Header/Header'
-import Card from './Components/Card/Card'
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import Footer from './Components/Footer/Footer'
+
+import { useDispatch } from 'react-redux'
 import { fetchProducts } from './redux/async/fetch'
+import { Route } from 'react-router-dom'
+
+import Header from './Components/Header/Header'
+import Footer from './Components/Footer/Footer'
+
+import Home from './pages/Home'
+import Cart from './pages/Cart'
+
 function App() {
-  const products = useSelector((state) => state.cart.items)
   const dispatch = useDispatch()
-  React.useEffect(() => {
-    dispatch(fetchProducts())
-  }, [])
+  React.useEffect(
+    () => {
+      dispatch(fetchProducts())
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  )
   return (
     <>
       <div className="wrapper">
         <Header />
-        <div className="slider"></div>
         <div className="content">
-          <h1>Товари у наявності</h1>
-          <div className="icecream">
-            {products && products.map((item, index) => <Card key={index} {...item} />)}
-          </div>
+          <Route path="/" component={Home} exact />
+          <Route path="/cart" component={Cart} exact />
         </div>
         <Footer />
       </div>
