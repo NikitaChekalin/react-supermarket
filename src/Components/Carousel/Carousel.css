@@ -1,0 +1,46 @@
+.carousel {
+  overflow: hidden;
+}
+
+.inner {
+  white-space: nowrap;
+  transition: transform 0.8s;
+}
+.carousel__img {
+  width: 100px;
+}
+
+.carousel-item {
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  height: 280px;
+  margin-left: 150px;
+  color: #fff;
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+}
+
+.indicators > button {
+  margin: 5px;
+}
+
+.indicators > button.active {
+  color: #fff;
+}
+.carousel__img {
+  width: 250px;
+}
+.carousel__sale {
+  color: red;
+  font-size: 25px;
+  font-style: italic;
+  font-weight: 700;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
