@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CartItem from '../Components/СartItem/CartItem'
+import CartItem from '../../Components/СartItem/CartItem'
 import './Cart.css'
 const Cart = () => {
   return (

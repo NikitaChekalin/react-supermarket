@@ -7,8 +7,8 @@ import { Route } from 'react-router-dom'
 import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
 
-import Home from './pages/Home'
-import Cart from './pages/Cart'
+import Home from './pages/Home/Home'
+import Cart from './pages/Cart/Cart'
 
 function App() {
   const dispatch = useDispatch()
