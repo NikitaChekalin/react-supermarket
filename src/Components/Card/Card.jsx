@@ -3,10 +3,21 @@ import React from 'react'
 
 export default function Card({ title, imageUrl, price }) {
   const [addedItem, setAddedItem] = React.useState(false)
+  const [favoriteItem, setFavoriteItemItem] = React.useState(false)
+  const getItem = ({ obj }) => {
+    setAddedItem(!addedItem)
+    console.log(obj)
+  }
   return (
     <div className={styled.card}>
       <div className={styled.favorite}>
-        <img width={25} height={24} src={'/img/assets/favorite.png'} alt="efee" />
+        <img
+          onClick={() => setFavoriteItemItem(!favoriteItem)}
+          width={25}
+          height={24}
+          src={favoriteItem ? '/img/assets/favorite.png' : '/img/assets/noFavorite.png'}
+          alt="efee"
+        />
       </div>
       <img width={230} src={imageUrl} alt="Sneakers 1" />
       <p>{title}</p>
@@ -17,7 +28,7 @@ export default function Card({ title, imageUrl, price }) {
         </div>
 
         <img
-          onClick={() => setAddedItem(!addedItem)}
+          onClick={({ obj }) => getItem(obj)}
           className={styled.card__plus}
           src={addedItem ? '/img/assets/added.png' : '/img/assets/pluc.png'}
           width={50}

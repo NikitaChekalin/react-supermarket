@@ -1,7 +1,6 @@
 import './Carousel.css'
 
 import React, { useEffect, useState } from 'react'
-import { useSwipeable } from 'react-swipeable'
 
 export const CarouselItem = ({ children, width, imageUrl }) => {
   return (
@@ -28,6 +27,7 @@ const Carousel = ({ children }) => {
   }
 
   useEffect(() => {
+    const activeCarousel = () => setPaused(true)
     const interval = setInterval(() => {
       if (paused) {
         updateIndex(activeIndex + 1)
@@ -38,22 +38,13 @@ const Carousel = ({ children }) => {
       if (interval) {
         clearInterval(interval)
       }
+      activeCarousel()
     }
   })
 
-  const handlers = useSwipeable({
-    onSwipedLeft: () => updateIndex(activeIndex + 1),
-    onSwipedRight: () => updateIndex(activeIndex - 1),
-  })
-
   return (
-    <div
-      {...handlers}
-      className="carousel"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      <div className="inner" style={{ transform: `translateX(-${activeIndex * 25}%)` }}>
+    <div className="carousel">
+      <div className="inner" style={{ transform: `translateX(-${activeIndex * 40}%)` }}>
         {React.Children.map(children, (child, index) => {
           return React.cloneElement(child, { width: '450px' })
         })}

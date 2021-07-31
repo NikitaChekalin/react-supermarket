@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from './Header.module.scss'
+// import Loader from '../Loader/Loader'
+import AudioPlayer from '../../Components/AudioPlayer/AudioPlayer'
 
 export default function Header() {
   return (
@@ -14,7 +16,7 @@ export default function Header() {
           </div>
         </div>
       </Link>
-
+      <AudioPlayer audioUrl={'/music/back_2.mp3'} play={true} />
       <ul className={styled.header__right}>
         <Link to="/cart">
           <li>
