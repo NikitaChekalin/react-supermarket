@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "file-loader": "^6.2.0",
+    "google-map-react": "^2.1.10",
+    "google-maps-react": "^2.0.6",
     "node-sass": "^6.0.1",
     "react": "^17.0.2",
     "react-audio-player": "^0.17.0",

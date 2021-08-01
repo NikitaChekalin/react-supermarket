@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import styled from './Header.module.scss'
 // import Loader from '../Loader/Loader'
 import AudioPlayer from '../../Components/AudioPlayer/AudioPlayer'
-
+import { useSelector } from 'react-redux'
 export default function Header() {
+  const { totalCount, totalPrice } = useSelector(({ cart }) => cart)
   return (
     <header>
       <Link to="/">
@@ -20,8 +21,11 @@ export default function Header() {
       <ul className={styled.header__right}>
         <Link to="/cart">
           <li>
+            <img width={60} height={35} src={'/img/assets/countProducts.png'} alt="Shopping_cart" />
+            <span>{totalCount}</span>
+
             <img width={60} height={35} src={'/img/assets/shop_card.png'} alt="Shopping_cart" />
-            <span>30 грн</span>
+            <span>{totalPrice} грн</span>
           </li>
         </Link>
         <Link to="/user">

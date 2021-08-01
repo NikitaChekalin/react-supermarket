@@ -1,8 +1,11 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import CartItem from '../../Components/СartItem/CartItem'
 import './Cart.css'
 const Cart = () => {
+  const { cart } = useSelector(({ cart }) => cart)
+  console.log(cart)
   return (
     <div className="container container--cart">
       <div className="cart">
@@ -81,12 +84,7 @@ const Cart = () => {
           </div>
         </div>
         <div className="content__items">
-          <CartItem
-            name="Ескімос"
-            price={12}
-            type="Морозиво"
-            imageUrl={'/img/icecream/ice_cream_escimos.png'}
-          />
+          {cart && cart.map((obj) => <CartItem {...obj} key={obj.id} />)}
         </div>
         <div className="cart__bottom">
           <div className="cart__bottom-details">
