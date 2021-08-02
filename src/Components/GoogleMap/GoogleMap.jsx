@@ -29,7 +29,7 @@ const GoogleMap = () => {
       lng: 28.4,
     },
   ]
-  const defaultProps = {
+  const dataMap = {
     center: {
       lat: 49.2331,
       lng: 28.4682,
@@ -38,16 +38,16 @@ const GoogleMap = () => {
   }
 
   return (
-    <div style={{ height: '70vh', width: '90%', margin: '0 auto' }}>
+    <div style={{ height: '500px', width: '1400px+', margin: '0 auto' }}>
       <GoogleMapReact
         bootstrapURLKeys={{
           key: 'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCdFm0-e42b3krBA5Ei8jkmlnstPOq3yPA',
         }}
-        defaultCenter={defaultProps.center}
-        defaultZoom={defaultProps.zoom}
+        defaultCenter={dataMap.center}
+        defaultZoom={dataMap.zoom}
       >
         {markersArr.map((item) => (
-          <MapMarker {...item} />
+          <MapMarker {...item} key={item.lat} />
         ))}
       </GoogleMapReact>
     </div>
@@ -55,5 +55,3 @@ const GoogleMap = () => {
 }
 
 export default GoogleMap
-
-// https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCdFm0-e42b3krBA5Ei8jkmlnstPOq3yPA

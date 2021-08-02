@@ -1,10 +1,10 @@
 import React from 'react'
 import './CartItem.css'
-const CartItem = ({ name, type, price, imageUrl }) => {
+const CartItem = ({ name, type, price, imageUrl, addedProduct }) => {
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img className="pizza-block__image" src={imageUrl} alt="Product" />
+        <img className="pizza-block__image" width={50} src={imageUrl} alt="Product" />
       </div>
       <div className="cart__item-info">
         <h3>{name}</h3>

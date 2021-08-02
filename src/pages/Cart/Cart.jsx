@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux'
 import CartItem from '../../Components/СartItem/CartItem'
 import './Cart.css'
 const Cart = () => {
-  const { cart } = useSelector(({ cart }) => cart)
-  console.log(cart)
+  const { totalCount, totalPrice, items } = useSelector(({ cart }) => cart)
+  console.log(items)
+  const resultArrayCartItems = Object.values(items).flat()
   return (
     <div className="container container--cart">
       <div className="cart">
@@ -84,21 +85,22 @@ const Cart = () => {
           </div>
         </div>
         <div className="content__items">
-          {cart && cart.map((obj) => <CartItem {...obj} key={obj.id} />)}
+          {resultArrayCartItems &&
+            resultArrayCartItems.map((item, index) => <CartItem {...item} key={index} />)}
         </div>
         <div className="cart__bottom">
           <div className="cart__bottom-details">
             <span>
               {' '}
-              Всього продуктів: <b>1 шт.</b>{' '}
+              Всього продуктів: <b>{totalCount} шт.</b>{' '}
             </span>
             <span>
               {' '}
-              Сума замовлення: <b>12 Грн</b>{' '}
+              Сума замовлення: <b>{totalPrice} Грн</b>{' '}
             </span>
           </div>
           <div className="cart__bottom-buttons">
-            <a href="/" className="button button--outline button--add go-back-btn">
+            <NavLink to="/" className="button button--outline button--add go-back-btn">
               <svg
                 width="8"
                 height="14"
@@ -118,7 +120,7 @@ const Cart = () => {
               <NavLink to="/">
                 <span>Повернутись </span>
               </NavLink>
-            </a>
+            </NavLink>
             <div className="button pay-btn">
               <span>Сплатити зараз</span>
             </div>

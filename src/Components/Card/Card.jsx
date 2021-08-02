@@ -1,7 +1,14 @@
 import styled from './Card.module.scss'
 import React from 'react'
 
-export default function Card({ title, imageUrl, price, id, onClickAddProduct }) {
+export default function Card({
+  title,
+  imageUrl,
+  price,
+  id,
+  onClickAddProduct,
+  addedCountProducts,
+}) {
   const [addedItem, setAddedItem] = React.useState(false)
   const [favoriteItem, setFavoriteItemItem] = React.useState(false)
   const onAddProduct = () => {
@@ -28,14 +35,9 @@ export default function Card({ title, imageUrl, price, id, onClickAddProduct }) 
           <b>{price} грн</b>
         </div>
 
-        <img
-          onClick={onAddProduct}
-          className={styled.card__plus}
-          src={addedItem ? '/img/assets/added.png' : '/img/assets/pluc.png'}
-          width={50}
-          height={29}
-          alt=""
-        />
+        <button className={styled.button} onClick={onAddProduct}>
+          +{addedCountProducts && <i>{addedCountProducts}</i>}
+        </button>
       </div>
     </div>
   )

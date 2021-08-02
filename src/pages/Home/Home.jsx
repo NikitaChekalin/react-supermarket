@@ -7,14 +7,17 @@ import { addProductsToCartActionCreator } from '../../redux/reducers/cartReduser
 import GoogleMap from '../../Components/GoogleMap/GoogleMap'
 const Home = () => {
   const products = useSelector((state) => state.products.items)
+  const cart = useSelector((state) => state.cart.items)
   const isLoaded = useSelector((state) => state.products.isLoaded)
   const dispatch = useDispatch()
 
   const addProductToCart = (obj) => {
     dispatch(addProductsToCartActionCreator(obj))
+    console.log(obj)
   }
   return (
     <>
+      <h1>Кращі товари</h1>
       <Carousel>
         {products &&
           products
@@ -27,7 +30,12 @@ const Home = () => {
       <div className="icecream">
         {isLoaded ? (
           products.map((obj, index) => (
-            <Card onClickAddProduct={addProductToCart} key={index} {...obj} />
+            <Card
+              addedCountProducts={cart[obj.id] && cart[obj.id].length}
+              onClickAddProduct={addProductToCart}
+              key={index}
+              {...obj}
+            />
           ))
         ) : (
           <Loader />
