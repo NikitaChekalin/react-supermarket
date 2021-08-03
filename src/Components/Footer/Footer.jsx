@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from './Footer.module.scss'
 const Footer = () => {
   return (
@@ -14,6 +15,15 @@ const Footer = () => {
           </div>
           <div className={styled.footer__block}>
             <h4 className={styled.footer__title}>Розкажи про нас друзям!</h4>
+            <NavLink to="https://www.facebook.com/">
+              <img src={'/img/assets/facebook.png'} alt="Facebook"></img>
+            </NavLink>
+            <NavLink to="https://www.youtube.com/">
+              <img src={'/img/assets/YT.png'} alt="YouTube"></img>
+            </NavLink>
+            <NavLink to="https://www.instagram.com/">
+              <img src={'/img/assets/instagram.png'} alt="Instagram"></img>
+            </NavLink>
           </div>
           <div className={styled.footer__block}>
             <h4 className={styled.footer__title}>Про нас</h4>

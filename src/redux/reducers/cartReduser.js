@@ -1,5 +1,8 @@
 const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART'
 const CLEAR_ALL_CART = 'CLEAR_ALL_CART'
+const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'
+const PLUS_ITEM_INTO_CART = 'PLUS_ITEM_INTO_CART'
+const MINUS_ITEM_INTO_CART = 'MINUS_ITEM_INTO_CART'
 
 const initialState = {
   items: {},
@@ -10,7 +13,7 @@ const getTotalPrice = (arr) => arr.reduce((sum, obj) => Number(obj.price) + sum,
 export const cartReducer = (state = initialState, action) => {
   //обчислюємо в Redux всі значення для того , щоб в UI  не робити зайвих обчислень
   switch (action.type) {
-    case ADD_ITEM_TO_CART:
+    case ADD_ITEM_TO_CART: {
       //!перевіряємо чи є в Redux ключ х , якщо такого ключа немає створи  в items 1 масив у якого 1 об'єкт , якщо такий ключ є то перествори такий масив і в кінець додай новий об'єкт
       const currentproductItems = !state.items[action.payload.id]
         ? [action.payload]
@@ -35,8 +38,50 @@ export const cartReducer = (state = initialState, action) => {
         // *  , використовуємо метод об'єкта values для отримання масиву , flat() - об'єднуємо масиви  та отримуємо дані
         // * потрібно для підрахунку тих самих продуктів  які були вже додані 2 і більше раз
       }
+    }
     case CLEAR_ALL_CART:
       return { items: {}, totalPrice: 0, totalCount: 0 }
+    case REMOVE_ITEM_FROM_CART:
+      const item = { ...state.items }
+      const totalPrice = item[action.payload].totalPrice // отримуємо дані видаляємого елемента для майбутнього обрахунку суми та к-ль елементів
+      const totalCount = item[action.payload].items.length
+
+      delete item[action.payload] // видаляємо потрібний нам елемент через передачу id
+      return {
+        ...state,
+        items: item,
+        totalPrice: state.totalPrice - totalPrice,
+        totalCount: state.totalCount - totalCount,
+      }
+    case PLUS_ITEM_INTO_CART: {
+      const newItem = [...state.items[action.payload].items, state.items[action.payload].items[0]]
+      return {
+        ...state,
+        items: {
+          ...state.items,
+          [action.payload]: {
+            items: newItem,
+            totalPrice: getTotalPrice(newItem),
+          },
+        },
+      }
+    }
+
+    case MINUS_ITEM_INTO_CART: {
+      const oldProduct = state.items[action.payload].items
+      const newItemMinus =
+        oldProduct.length > 1 ? state.items[action.payload].items.slice(1) : oldProduct
+      return {
+        ...state,
+        items: {
+          ...state.items,
+          [action.payload]: {
+            items: newItemMinus,
+            totalPrice: getTotalPrice(newItemMinus),
+          },
+        },
+      }
+    }
     default:
       return state
   }
@@ -44,3 +89,16 @@ export const cartReducer = (state = initialState, action) => {
 
 export const addProductsToCartActionCreator = (payload) => ({ type: ADD_ITEM_TO_CART, payload })
 export const deleteAllProductsFromCartActionCreator = () => ({ type: CLEAR_ALL_CART })
+export const removeProductFromCartActionCreator = (id) => ({
+  type: REMOVE_ITEM_FROM_CART,
+  payload: id,
+})
+
+export const plusProductIntoCartActionCreator = (id) => ({
+  type: PLUS_ITEM_INTO_CART,
+  payload: id,
+})
+export const minusProductIntoCartActionCreator = (id) => ({
+  type: MINUS_ITEM_INTO_CART,
+  payload: id,
+})

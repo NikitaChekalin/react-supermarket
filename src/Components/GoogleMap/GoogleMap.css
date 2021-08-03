@@ -1,0 +1,12 @@
+.map__container {
+  height: 500px;
+  width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 320px) {
+  .map__container {
+    height: 300px;
+    width: 300px;
+  }
+}

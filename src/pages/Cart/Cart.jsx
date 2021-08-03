@@ -2,15 +2,33 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import CartItem from '../../Components/СartItem/CartItem'
-import { deleteAllProductsFromCartActionCreator } from '../../redux/reducers/cartReduser'
+import {
+  removeProductFromCartActionCreator,
+  deleteAllProductsFromCartActionCreator,
+  plusProductIntoCartActionCreator,
+  minusProductIntoCartActionCreator,
+} from '../../redux/reducers/cartReduser'
 import './Cart.css'
 const Cart = () => {
   const dispatch = useDispatch()
   const { totalCount, totalPrice, items } = useSelector(({ cart }) => cart)
   const addedProductToCart = Object.keys(items).map((key) => items[key].items[0]) // беремо з масива перший об'єкт , потрібно для відображення 1 позиції продукту у випадку якщо той самий продукт був доданий деілька раз.
   const clearCart = () => {
-    dispatch(deleteAllProductsFromCartActionCreator()) //cтворюємо нову функцію , а не пишемо анонімну , для запобігання ре-рендеру
+    if (window.confirm('Можливо ви випадково натиснули) Ви дійсно хочете очистити корзину?')) {
+      dispatch(deleteAllProductsFromCartActionCreator())
+    }
   }
+
+  const deleteItemFromCart = (id) => {
+    dispatch(removeProductFromCartActionCreator(id))
+  }
+  const onMinus = (id) => {
+    dispatch(minusProductIntoCartActionCreator(id))
+  }
+  const onPlus = (id) => {
+    dispatch(plusProductIntoCartActionCreator(id))
+  }
+
   return (
     <div className="container container--cart">
       <div className="cart">
@@ -92,6 +110,9 @@ const Cart = () => {
           {addedProductToCart &&
             addedProductToCart.map((item, index) => (
               <CartItem
+                minusProductItem={onMinus}
+                plusProductItem={onPlus}
+                deleteItem={deleteItemFromCart}
                 totalCount={items[item.id] && items[item.id].items.length}
                 totalPrice={items[item.id].totalPrice}
                 {...item}

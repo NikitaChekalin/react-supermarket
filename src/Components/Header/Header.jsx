@@ -30,7 +30,13 @@ export default function Header() {
         </Link>
         <Link to="/user">
           <li>
-            <img width={35} height={35} src={'/img/assets/header_user.png'} alt="USER" />
+            <img
+              width={35}
+              className={styled.user__img}
+              height={35}
+              src={'/img/assets/header_user.png'}
+              alt="USER"
+            />
           </li>
         </Link>
       </ul>
