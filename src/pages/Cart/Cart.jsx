@@ -1,12 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CartItem from '../../Components/СartItem/CartItem'
+import { deleteAllProductsFromCartActionCreator } from '../../redux/reducers/cartReduser'
 import './Cart.css'
 const Cart = () => {
+  const dispatch = useDispatch()
   const { totalCount, totalPrice, items } = useSelector(({ cart }) => cart)
-  console.log(items)
-  const resultArrayCartItems = Object.values(items).flat()
+  const addedProductToCart = Object.keys(items).map((key) => items[key].items[0]) // беремо з масива перший об'єкт , потрібно для відображення 1 позиції продукту у випадку якщо той самий продукт був доданий деілька раз.
+  const clearCart = () => {
+    dispatch(deleteAllProductsFromCartActionCreator()) //cтворюємо нову функцію , а не пишемо анонімну , для запобігання ре-рендеру
+  }
   return (
     <div className="container container--cart">
       <div className="cart">
@@ -81,12 +85,19 @@ const Cart = () => {
               />
             </svg>
 
-            <span>Очистити Корзину</span>
+            <span onClick={clearCart}>Очистити Корзину</span>
           </div>
         </div>
         <div className="content__items">
-          {resultArrayCartItems &&
-            resultArrayCartItems.map((item, index) => <CartItem {...item} key={index} />)}
+          {addedProductToCart &&
+            addedProductToCart.map((item, index) => (
+              <CartItem
+                totalCount={items[item.id] && items[item.id].items.length}
+                totalPrice={items[item.id].totalPrice}
+                {...item}
+                key={index}
+              />
+            ))}
         </div>
         <div className="cart__bottom">
           <div className="cart__bottom-details">
@@ -117,9 +128,7 @@ const Cart = () => {
                 />
               </svg>
 
-              <NavLink to="/">
-                <span>Повернутись </span>
-              </NavLink>
+              <span>Повернутись </span>
             </NavLink>
             <div className="button pay-btn">
               <span>Сплатити зараз</span>

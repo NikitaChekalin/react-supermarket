@@ -1,6 +1,6 @@
 import React from 'react'
 import './CartItem.css'
-const CartItem = ({ name, type, price, imageUrl, addedProduct }) => {
+const CartItem = ({ name, type, imageUrl, totalCount, totalPrice }) => {
   return (
     <div className="cart__item">
       <div className="cart__item-img">
@@ -29,7 +29,7 @@ const CartItem = ({ name, type, price, imageUrl, addedProduct }) => {
             />
           </svg>
         </div>
-        <b>2</b>
+        <b>{totalCount}</b>
         <div className="button button--outline button--circle cart__item-count-plus">
           <svg
             width="10"
@@ -50,7 +50,7 @@ const CartItem = ({ name, type, price, imageUrl, addedProduct }) => {
         </div>
       </div>
       <div className="cart__item-price">
-        <b>{price} грн</b>
+        <b>{totalPrice} грн</b>
       </div>
       <div className="cart__item-remove">
         <div className="button button--outline button--circle">

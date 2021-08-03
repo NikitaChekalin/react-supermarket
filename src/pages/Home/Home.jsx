@@ -10,10 +10,8 @@ const Home = () => {
   const cart = useSelector((state) => state.cart.items)
   const isLoaded = useSelector((state) => state.products.isLoaded)
   const dispatch = useDispatch()
-
   const addProductToCart = (obj) => {
     dispatch(addProductsToCartActionCreator(obj))
-    console.log(obj)
   }
   return (
     <>
@@ -31,7 +29,7 @@ const Home = () => {
         {isLoaded ? (
           products.map((obj, index) => (
             <Card
-              addedCountProducts={cart[obj.id] && cart[obj.id].length}
+              addedCountProducts={cart[obj.id] && cart[obj.id].items.length} // шукаємо довжину в масиві а не в об'єкті як раніше
               onClickAddProduct={addProductToCart}
               key={index}
               {...obj}

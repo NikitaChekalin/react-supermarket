@@ -250,7 +250,8 @@ a {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  border-top: 1px solid #f6f6f6;
+  border-radius: 5px;
+  border-bottom: 1px solid #f0e8e8;
   padding-top: 30px;
   margin-top: 30px;
 }
