@@ -3,10 +3,40 @@
   width: 1400px;
   margin: 0 auto;
 }
-
-@media (min-width: 320px) {
+@media (min-width: 0) {
   .map__container {
-    height: 300px;
-    width: 300px;
+    height: 50px;
+    width: 100%;
+  }
+}
+@media (min-width: 320px) and (max-width: 480px) {
+  .map__container {
+    height: 250px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .map__container {
+    height: 250px;
+    width: 100%;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .map__container {
+    height: 250px;
+    width: 100%;
+  }
+}
+@media (min-width: 1025px) and (max-width: 1200px) {
+  .map__container {
+    height: 350px;
+    width: 100%;
+  }
+}
+@media (min-width: 1201px) {
+  .map__container {
+    height: 500px;
+    width: 100%;
   }
 }

@@ -42,8 +42,13 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
-@media (min-width: 320px) {
+@media (min-width: 320px) and (max-width: 480px) {
   h1 {
     font-size: 26px;
+  }
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  h1 {
+    font-size: 28px;
   }
 }

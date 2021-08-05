@@ -83,3 +83,8 @@ $card-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.2);
   transform: translateY(-3px);
 }
+@media (min-width: 320px) and (max-width: 480px) {
+  .card {
+    margin-right: 0px;
+  }
+}
