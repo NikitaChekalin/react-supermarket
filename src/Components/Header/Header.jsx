@@ -17,7 +17,7 @@ export default function Header() {
           </div>
         </div>
       </Link>
-      <AudioPlayer audioUrl={'/music/back_2.mp3'} play={true} />
+      <AudioPlayer audioUrl={'/music/back_2.mp3'} play={false} />
       <ul className={styled.header__right}>
         <Link to="/cart">
           <li>

@@ -10,6 +10,7 @@ const initialState = {
   totalCount: 0,
 }
 const getTotalPrice = (arr) => arr.reduce((sum, obj) => Number(obj.price) + sum, 0)
+
 export const cartReducer = (state = initialState, action) => {
   //обчислюємо в Redux всі значення для того , щоб в UI  не робити зайвих обчислень
   switch (action.type) {
@@ -41,6 +42,7 @@ export const cartReducer = (state = initialState, action) => {
     }
     case CLEAR_ALL_CART:
       return { items: {}, totalPrice: 0, totalCount: 0 }
+
     case REMOVE_ITEM_FROM_CART:
       const item = { ...state.items }
       const totalPrice = item[action.payload].totalPrice // отримуємо дані видаляємого елемента для майбутнього обрахунку суми та к-ль елементів
@@ -53,8 +55,12 @@ export const cartReducer = (state = initialState, action) => {
         totalPrice: state.totalPrice - totalPrice,
         totalCount: state.totalCount - totalCount,
       }
+
     case PLUS_ITEM_INTO_CART: {
+      const item = { ...state.items }
       const newItem = [...state.items[action.payload].items, state.items[action.payload].items[0]]
+      const currentProductPrice = Number(item[action.payload].items[0].price)
+
       return {
         ...state,
         items: {
@@ -64,22 +70,49 @@ export const cartReducer = (state = initialState, action) => {
             totalPrice: getTotalPrice(newItem),
           },
         },
+        totalCount: state.totalCount + 1,
+        totalPrice: state.totalPrice + currentProductPrice,
       }
     }
 
     case MINUS_ITEM_INTO_CART: {
+      const item = { ...state.items }
+      const currentItemCount = item[action.payload].items.length
       const oldProduct = state.items[action.payload].items
       const newItemMinus =
         oldProduct.length > 1 ? state.items[action.payload].items.slice(1) : oldProduct
+      const newItems = {
+        ...state.items,
+        [action.payload]: { items: newItemMinus, totalPrice: getTotalPrice(newItemMinus) },
+      }
+      // мне нужно будет понять при помощи totalPrice можно ли отнять стоимость 1 продукта от сумы в блоке id
+      // console.log(newItems[action.payload].items[0].price, 'Цена Продукта  по индексу 0 ') //!
+      // console.log(newItems[action.payload].totalPrice, 'newItems - totalPrice') //!
+      const getSumOfItems = Object.values(newItems)
+        .map((item) => item.totalPrice)
+        .reduce((a, b) => b + a)
+
+      const getPrice = (newItemObj) => {
+        if (newItemObj[action.payload].totalPrice > newItemObj[action.payload].items[0].price) {
+          const totalPrice = state.totalPrice - newItemObj[action.payload].items[0].price
+          return totalPrice
+        } else {
+          return getSumOfItems
+        }
+      }
+
+      const getTotalCount = (currentProductsLenth, defaultState) => {
+        if (currentProductsLenth > 1) {
+          return defaultState.totalCount - 1
+        } else {
+          return defaultState.totalCount
+        }
+      }
       return {
         ...state,
-        items: {
-          ...state.items,
-          [action.payload]: {
-            items: newItemMinus,
-            totalPrice: getTotalPrice(newItemMinus),
-          },
-        },
+        items: newItems,
+        totalPrice: getPrice(newItems),
+        totalCount: getTotalCount(currentItemCount, state),
       }
     }
     default:
@@ -102,3 +135,10 @@ export const minusProductIntoCartActionCreator = (id) => ({
   type: MINUS_ITEM_INTO_CART,
   payload: id,
 })
+
+// const getTotalCount = (arr, arrRes) => {
+//   if (arr[action.payload].items.length > 1) return arrRes.totalCount - 1
+//   else {
+//     return arrRes.totalCount
+//   }
+// }
