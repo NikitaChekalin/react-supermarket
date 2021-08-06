@@ -43,6 +43,9 @@ body {
   flex-wrap: wrap;
 }
 @media (min-width: 320px) and (max-width: 480px) {
+  .content {
+    padding: 10px;
+  }
   h1 {
     font-size: 26px;
   }
