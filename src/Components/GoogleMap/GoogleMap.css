@@ -11,7 +11,7 @@
 }
 @media (min-width: 320px) and (max-width: 480px) {
   .map__container {
-    height: 250px;
+    height: 350px;
     width: 100%;
   }
 }

@@ -24,7 +24,7 @@ const CartItem = ({
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img className="pizza-block__image" width={50} src={imageUrl} alt="Product" />
+        <img width={50} src={imageUrl} alt="Product" />
       </div>
       <div className="cart__item-info">
         <h3>{name}</h3>
@@ -76,7 +76,7 @@ const CartItem = ({
         </div>
       </div>
       <div className="cart__item-price">
-        <b>{totalPrice} грн</b>
+        <b>{totalPrice}</b>
       </div>
       <div onClick={removeItem} className="cart__item-remove">
         <div className="button button--outline button--circle">

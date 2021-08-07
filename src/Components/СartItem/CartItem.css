@@ -359,3 +359,53 @@ a {
   border-color: #2a2a2a;
   background-color: #2a2a2a;
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .cart__item-img img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .cart__item-count {
+    width: 20%;
+    margin-right: 30px;
+  }
+  .cart__item-price b {
+    font-size: 14px;
+  }
+  .cart__item-count b {
+    font-size: 14px;
+    margin: 0px 10px;
+  }
+  .cart__item-remove {
+    width: 6%;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .cart__item-img img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .cart__item-count {
+    width: 20%;
+    margin-right: 20px;
+  }
+  .cart__item-price b {
+    font-size: 16px;
+  }
+  .cart__item-count b {
+    font-size: 16px;
+    margin: 0px 12px;
+  }
+  .cart__item-remove {
+    width: 8%;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+}
+@media (min-width: 1025px) and (max-width: 1200px) {
+}
+@media (min-width: 1201px) {
+}
