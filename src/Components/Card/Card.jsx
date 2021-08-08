@@ -1,14 +1,7 @@
 import styled from './Card.module.scss'
 import React from 'react'
 
-export default function Card({
-  title,
-  imageUrl,
-  price,
-  id,
-  onClickAddProduct,
-  addedCountProducts,
-}) {
+const Card = React.memo(({ title, imageUrl, price, id, onClickAddProduct, addedCountProducts }) => {
   const [addedItem, setAddedItem] = React.useState(false)
   const [favoriteItem, setFavoriteItemItem] = React.useState(false)
   const onAddProduct = () => {
@@ -41,4 +34,5 @@ export default function Card({
       </div>
     </div>
   )
-}
+})
+export default Card

@@ -11,6 +11,17 @@ body {
   // background-position: center;
   // background-repeat: no-repeat;
 }
+@keyframes content_block {
+  0% {
+    opacity: 0;
+    transform: translatex(-800px);
+  }
+
+  100% {
+    transform: translatex(0px);
+    opacity: 1;
+  }
+}
 
 .wrapper {
   background-color: #eff6fc;
@@ -36,6 +47,7 @@ body {
 }
 
 .icecream {
+  animation: content_block 1s ease-in-out;
   margin: 0 auto;
   justify-content: center;
 

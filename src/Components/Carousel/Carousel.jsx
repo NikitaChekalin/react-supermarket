@@ -1,18 +1,7 @@
-import './Carousel.css'
-
+import styled from './Carousel.module.scss'
 import React, { useEffect, useState } from 'react'
 
-export const CarouselItem = ({ children, width, imageUrl }) => {
-  return (
-    <div className="carousel-item" style={{ width: width }}>
-      <img className="carousel__img" src={imageUrl} alt="Carousel__image">
-        {children}
-      </img>
-    </div>
-  )
-}
-console.log('rendered')
-const Carousel = ({ children }) => {
+const Carousel = React.memo(({ children }) => {
   const [activeIndex, setActiveIndex] = useState(0)
   const [paused, setPaused] = useState(false)
 
@@ -43,14 +32,17 @@ const Carousel = ({ children }) => {
   })
 
   return (
-    <div className="carousel">
-      <div className="inner" style={{ transform: `translateX(-${activeIndex * 40}%)` }}>
-        {React.Children.map(children, (child, index) => {
+    <div className={styled.carousel}>
+      <div
+        className={styled.carousel__inner}
+        style={{ transform: `translateX(-${activeIndex * 40}%)` }}
+      >
+        {React.Children.map(children, (child) => {
           return React.cloneElement(child, { width: '450px' })
         })}
       </div>
     </div>
   )
-}
+})
 
 export default Carousel

@@ -5,23 +5,12 @@ header {
   justify-content: space-between;
   padding: 40px;
   background-color: #f1f2f3;
-  .header__info p {
-    text-decoration: none;
-    padding-left: 10px;
-    opacity: 0.7;
-    font-size: 15px;
-    font-weight: 800;
-    text-transform: uppercase;
-  }
+
   a {
     color: rgb(39, 39, 39);
     text-decoration: none;
   }
-  .header__left {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-  }
+
   img {
     margin-right: 15;
   }

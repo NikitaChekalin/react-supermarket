@@ -1,8 +1,8 @@
 import React from 'react'
 import GoogleMapReact from 'google-map-react'
 import MapMarker from './MapMarker/MapMarker'
-import './GoogleMap.css'
-const GoogleMap = () => {
+import styled from './GoogleMap.module.scss'
+const GoogleMap = React.memo(() => {
   const markersArr = [
     {
       title: 'Магазине відділення №1',
@@ -38,7 +38,7 @@ const GoogleMap = () => {
   }
 
   return (
-    <div className="map__container">
+    <div className={styled.map__container}>
       <GoogleMapReact
         bootstrapURLKeys={{
           key: 'https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyCdFm0-e42b3krBA5Ei8jkmlnstPOq3yPA',
@@ -52,6 +52,6 @@ const GoogleMap = () => {
       </GoogleMapReact>
     </div>
   )
-}
+})
 
 export default GoogleMap

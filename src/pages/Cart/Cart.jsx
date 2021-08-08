@@ -14,7 +14,6 @@ const Cart = () => {
   const dispatch = useDispatch()
   const { totalCount, totalPrice, items } = useSelector(({ cart }) => cart)
   const addedProductToCart = Object.keys(items).map((key) => items[key].items[0]) // беремо з масива перший об'єкт , потрібно для відображення 1 позиції продукту у випадку якщо той самий продукт був доданий деілька раз.
-  console.log(Object.keys(items).length)
   const clearCart = () => {
     if (Object.keys(items).length > 0) {
       if (window.confirm('Можливо ви випадково натиснули) Ви дійсно хочете очистити корзину?')) {

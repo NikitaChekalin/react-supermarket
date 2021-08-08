@@ -1,7 +1,6 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import styled from './Footer.module.scss'
-const Footer = () => {
+const Footer = React.memo(() => {
   return (
     <footer className={styled.footer}>
       <div className={styled.container}>
@@ -15,15 +14,15 @@ const Footer = () => {
           </div>
           <div className={styled.footer__block}>
             <h4 className={styled.footer__title}>Розкажи про нас друзям!</h4>
-            <NavLink to="https://www.facebook.com/">
+            <a href="https://www.facebook.com/">
               <img src={'/img/assets/facebook.png'} alt="Facebook"></img>
-            </NavLink>
-            <NavLink to="https://www.youtube.com/">
+            </a>
+            <a href="https://www.youtube.com/">
               <img src={'/img/assets/YT.png'} alt="YouTube"></img>
-            </NavLink>
-            <NavLink to="https://www.instagram.com/">
+            </a>
+            <a href="https://www.instagram.com/">
               <img src={'/img/assets/instagram.png'} alt="Instagram"></img>
-            </NavLink>
+            </a>
           </div>
           <div className={styled.footer__block}>
             <h4 className={styled.footer__title}>Про нас</h4>
@@ -44,5 +43,5 @@ const Footer = () => {
       </div>
     </footer>
   )
-}
+})
 export default Footer

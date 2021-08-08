@@ -1,21 +1,24 @@
 import React from 'react'
 import Card from '../../Components/Card/Card'
-import Carousel, { CarouselItem } from '../../Components/Carousel/Carousel.jsx'
+import Carousel from '../../Components/Carousel/Carousel.jsx'
 import Loader from '../../Components/Loader/Loader'
+import CarouselItem from '../../Components/Carousel/CarouselItem/CarouselItem'
 import { useSelector, useDispatch } from 'react-redux'
 import { addProductsToCartActionCreator } from '../../redux/reducers/cartReduser'
 import GoogleMap from '../../Components/GoogleMap/GoogleMap'
-const Home = () => {
+import Title from '../../Components/Title/Title'
+const Home = React.memo(() => {
   const products = useSelector((state) => state.products.items)
   const cart = useSelector((state) => state.cart.items)
   const isLoaded = useSelector((state) => state.products.isLoaded)
+
   const dispatch = useDispatch()
   const addProductToCart = (obj) => {
     dispatch(addProductsToCartActionCreator(obj))
   }
   return (
     <>
-      <h1>Кращі товари</h1>
+      <Title title="Кращі товари"></Title>
       <Carousel>
         {products &&
           products
@@ -23,15 +26,15 @@ const Home = () => {
             .reverse()
             .map((item) => <CarouselItem key={item.id} {...item} />)}
       </Carousel>
+      <Title title="Товари у наявності"></Title>
 
-      <h1>Товари у наявності</h1>
       <div className="icecream">
         {isLoaded ? (
-          products.map((obj, index) => (
+          products.map((obj) => (
             <Card
-              addedCountProducts={cart[obj.id] && cart[obj.id].items.length} // шукаємо довжину в масиві а не в об'єкті як раніше
+              addedCountProducts={cart[obj.id] && cart[obj.id].items.length}
               onClickAddProduct={addProductToCart}
-              key={index}
+              key={obj.id}
               {...obj}
             />
           ))
@@ -39,10 +42,10 @@ const Home = () => {
           <Loader />
         )}
       </div>
-      <h1>Місця де Ми чекаємо на тебе!</h1>
+      <Title title="Місця де Ми чекаємо на тебе!"></Title>
       <GoogleMap />
     </>
   )
-}
+})
 
 export default Home

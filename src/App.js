@@ -19,12 +19,15 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
+
   return (
     <div className="wrapper">
       <Header />
       <div className="content">
-        <Route path="/" component={Home} exact />
-        <Route path="/cart" component={Cart} exact />
+        <div className="container">
+          <Route exact path="/" component={Home}></Route>
+          <Route exact path="/cart" component={Cart}></Route>
+        </div>
       </div>
       <Footer />
     </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const MapMarker = ({ title, imageUrlMarker }) => {
+const MapMarker = React.memo(({ title, imageUrlMarker }) => {
   return (
     <div style={{ display: 'block', width: '90px' }}>
       <img width={90} height={90} src={imageUrlMarker} alt="markerMap" />
@@ -9,6 +9,6 @@ const MapMarker = ({ title, imageUrlMarker }) => {
       </p>
     </div>
   )
-}
+})
 
 export default MapMarker
