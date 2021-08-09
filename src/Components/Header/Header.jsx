@@ -10,7 +10,7 @@ const Header = React.memo(() => {
   return (
     <header>
       <HeaderLeft />
-      <AudioPlayer audioUrl={'/music/back.mp3'} play={false} />
+      <AudioPlayer audioUrl={'/music/back.mp3'} play={true} />
       <ul className={styled.header__right}>
         <NavLink to="/cart">
           <li>
