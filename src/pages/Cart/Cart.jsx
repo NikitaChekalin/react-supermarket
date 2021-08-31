@@ -10,6 +10,8 @@ import {
 } from '../../redux/reducers/cartReduser'
 import './Cart.css'
 import OrderComplited from '../../Components/OrderComplited/OrderComplited'
+import FormOrder from '../../Components/Form/FormOrder'
+import axios from 'axios'
 const Cart = () => {
   const dispatch = useDispatch()
   const { totalCount, totalPrice, items } = useSelector(({ cart }) => cart)
@@ -33,9 +35,19 @@ const Cart = () => {
     dispatch(plusProductIntoCartActionCreator(id))
   }
   const [isOrderCompleted, setIsOrderCompleted] = React.useState(false)
-  const setOrder = () => {
-    setIsOrderCompleted(true)
-    dispatch(deleteAllProductsFromCartActionCreator())
+
+  const setOrder = async (obj) => {
+    try {
+      const userInfo = { obj, addedProductToCart }
+      if (addedProductToCart.length > 0) {
+        setIsOrderCompleted(true)
+        await axios.post('https://61003fa2bca46600171cf7ea.mockapi.io/orders', userInfo)
+        console.log(userInfo)
+        dispatch(deleteAllProductsFromCartActionCreator())
+      } else alert('Для оформлення замовлення потрібно додати хоч 1 продукт..')
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <div className="container container--cart">
@@ -170,17 +182,16 @@ const Cart = () => {
                 </NavLink>
                 <div
                   onClick={setOrder}
-                  className={Object.keys(items).length > 0 ? 'button pay-btn' : 'pay-btn-disable'}
+                  className={addedProductToCart.length > 0 ? null : 'pay-btn-disable'}
                 >
-                  <span>
-                    {Object.keys(items).length > 0 ? 'Сплатити зараз' : 'Оплата недоступна'}
-                  </span>
+                  <span>{addedProductToCart.length > 0 ? null : 'Оплата недоступна'}</span>
                 </div>
               </div>
             </div>
           </>
         )}
       </div>
+      <FormOrder onClickSetOrder={setOrder} />
     </div>
   )
 }

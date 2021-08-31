@@ -3,12 +3,12 @@ const CLEAR_ALL_CART = 'CLEAR_ALL_CART'
 const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'
 const PLUS_ITEM_INTO_CART = 'PLUS_ITEM_INTO_CART'
 const MINUS_ITEM_INTO_CART = 'MINUS_ITEM_INTO_CART'
-
 const initialState = {
   items: {},
   totalPrice: 0,
-  totalCount: 0,
+  totalCount: null,
 }
+
 const getTotalPrice = (arr) => arr.reduce((sum, obj) => Number(obj.price) + sum, 0)
 
 export const cartReducer = (state = initialState, action) => {
@@ -30,7 +30,6 @@ export const cartReducer = (state = initialState, action) => {
       }
       const items = Object.values(checkedObj).map((obj) => obj.items) //
       const finishedArr = items.flat() //!
-
       return {
         ...state,
         items: checkedObj,
@@ -41,7 +40,7 @@ export const cartReducer = (state = initialState, action) => {
       }
     }
     case CLEAR_ALL_CART:
-      return { items: {}, totalPrice: 0, totalCount: 0 }
+      return { items: {}, totalPrice: 0, totalCount: null }
 
     case REMOVE_ITEM_FROM_CART:
       const item = { ...state.items }
@@ -53,7 +52,7 @@ export const cartReducer = (state = initialState, action) => {
         ...state,
         items: item,
         totalPrice: state.totalPrice - totalPrice,
-        totalCount: state.totalCount - totalCount,
+        totalCount: state.totalCount - totalCount === 0 ? null : state.totalCount - totalCount,
       }
 
     case PLUS_ITEM_INTO_CART: {
@@ -119,7 +118,6 @@ export const cartReducer = (state = initialState, action) => {
       return state
   }
 }
-
 export const addProductsToCartActionCreator = (payload) => ({ type: ADD_ITEM_TO_CART, payload })
 export const deleteAllProductsFromCartActionCreator = () => ({ type: CLEAR_ALL_CART })
 export const removeProductFromCartActionCreator = (id) => ({

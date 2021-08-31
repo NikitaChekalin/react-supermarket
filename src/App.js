@@ -3,7 +3,6 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchProducts } from './redux/async/fetch'
 import { Route } from 'react-router-dom'
-
 import Header from './Components/Header/Header'
 import Footer from './Components/Footer/Footer'
 

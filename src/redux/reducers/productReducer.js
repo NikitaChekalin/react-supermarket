@@ -12,5 +12,4 @@ export const productReducer = (state = initialState, action) => {
       return state
   }
 }
-
 export const fetchProductsActionCreator = (payload) => ({ type: FETCH_PRODUCTS, payload })

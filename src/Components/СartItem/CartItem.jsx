@@ -1,17 +1,7 @@
 import React from 'react'
 import './CartItem.css'
 const CartItem = React.memo(
-  ({
-    id,
-    name,
-    type,
-    imageUrl,
-    totalCount,
-    totalPrice,
-    deleteItem,
-    minusProductItem,
-    plusProductItem,
-  }) => {
+  ({ id, imageUrl, totalCount, totalPrice, deleteItem, minusProductItem, plusProductItem }) => {
     const removeItem = () => {
       deleteItem(id)
     }
@@ -27,10 +17,7 @@ const CartItem = React.memo(
         <div className="cart__item-img">
           <img width={50} src={imageUrl} alt="Product" />
         </div>
-        <div className="cart__item-info">
-          <h3>{name}</h3>
-          <p>{type}</p>
-        </div>
+        <div className="cart__item-info"></div>
         <div className="cart__item-count">
           <div
             onClick={onMinus}

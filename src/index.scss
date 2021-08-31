@@ -14,11 +14,9 @@ body {
 @keyframes content_block {
   0% {
     opacity: 0;
-    transform: translatex(-800px);
   }
 
   100% {
-    transform: translatex(0px);
     opacity: 1;
   }
 }

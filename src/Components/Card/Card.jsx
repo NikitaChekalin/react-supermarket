@@ -3,7 +3,6 @@ import React from 'react'
 
 const Card = React.memo(({ title, imageUrl, price, id, onClickAddProduct, addedCountProducts }) => {
   const [addedItem, setAddedItem] = React.useState(false)
-  const [favoriteItem, setFavoriteItemItem] = React.useState(false)
   const onAddProduct = () => {
     const obj = { id, title, imageUrl, price }
     onClickAddProduct(obj)
@@ -11,15 +10,6 @@ const Card = React.memo(({ title, imageUrl, price, id, onClickAddProduct, addedC
   }
   return (
     <div className={styled.card}>
-      <div className={styled.favorite}>
-        <img
-          onClick={() => setFavoriteItemItem(!favoriteItem)}
-          width={25}
-          height={24}
-          src={favoriteItem ? '/img/assets/favorite.png' : '/img/assets/noFavorite.png'}
-          alt="efee"
-        />
-      </div>
       <img width={230} src={imageUrl} alt="Sneakers 1" />
       <p>{title}</p>
       <div className={styled.card__info}>
