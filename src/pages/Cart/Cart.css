@@ -1,17 +1,17 @@
 .container {
   margin: 0 auto;
 }
-
+.cart {
+  max-width: 900px;
+}
 .container--cart .content__title {
   margin: 0;
 }
-.cart {
-  width: 900px;
-  margin: 0 auto;
-}
+
 .container--cart {
   display: flex;
 }
+
 .cart__top {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -41,7 +41,6 @@
 }
 .cart .content__title svg path {
   stroke: #232323;
-  strokewidth: 1.9;
 }
 
 .cart__clear {
@@ -181,7 +180,7 @@
 }
 @media (min-width: 320px) and (max-width: 480px) {
   .container {
-    width: 100%;
+    width: 95%;
   }
   .content {
     padding: 15px;
@@ -205,7 +204,16 @@
   .cart__bottom-buttons {
     padding-right: 10px;
   }
-
+  .container--cart {
+    display: block;
+    margin: 0 auto;
+  }
+  .cart {
+    width: 100%;
+  }
+  .decor {
+    margin-left: 0px;
+  }
   .cart__bottom-buttons .pay-btn {
     margin-left: 10px;
     font-size: 16px;
@@ -215,9 +223,16 @@
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
-  .container {
+  .container--cart {
+    display: block;
+  }
+  .cart {
     width: 100%;
   }
+  .decor {
+    margin: auto;
+  }
+
   .content {
     padding: 15px;
   }
@@ -248,8 +263,38 @@
   }
 }
 @media (min-width: 769px) and (max-width: 1024px) {
+  .container--cart {
+    display: block;
+  }
+  .decor {
+    margin: auto;
+  }
+  .cart {
+    width: 95%;
+  }
 }
 @media (min-width: 1025px) and (max-width: 1200px) {
+  .container--cart {
+    display: block;
+  }
+  .decor {
+    margin: auto;
+  }
+  .cart {
+    width: 95%;
+    margin: auto;
+  }
 }
 @media (min-width: 1201px) {
+  .container--cart {
+    display: flex;
+  }
+
+  .decor {
+    margin-left: 80px;
+    margin-top: auto;
+  }
+  .cart {
+    width: 95%;
+  }
 }
