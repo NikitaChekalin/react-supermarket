@@ -11,7 +11,18 @@
 .container--cart {
   display: flex;
 }
+@keyframes content_block {
+  0% {
+    opacity: 0;
+  }
 
+  100% {
+    opacity: 1;
+  }
+}
+.content__items {
+  animation: content_block 0.7s;
+}
 .cart__top {
   display: -webkit-box;
   display: -ms-flexbox;
